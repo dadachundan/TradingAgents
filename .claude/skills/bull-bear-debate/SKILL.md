@@ -1,0 +1,61 @@
+---
+name: bull-bear-debate
+description: Run a multi-round bull-vs-bear debate over a ticker using the four analyst reports (market, sentiment, news, fundamentals) as evidence. Use when the user wants "the bull case vs bear case", "debate this trade", or as part of a full trading workflow after analyst reports are ready.
+argument-hint: <ticker> [--rounds N] [--asset-type stock|crypto]
+allowed-tools: [Read, Write]
+---
+
+# Bull / Bear Researcher Debate
+
+Stage a conversational debate between a **Bull Analyst** and a **Bear Analyst** over `<ticker>`. The debate proceeds for `--rounds N` rounds (default 2 if the orchestrator does not specify). Each round = one Bull turn then one Bear turn.
+
+For `--asset-type stock` use "stock" as the target label; for `--asset-type crypto` use "asset" (and note that the fundamentals report may be incomplete).
+
+## Inputs
+
+The four analyst reports must already exist in the conversation context as markdown blobs:
+
+- `market_report`
+- `sentiment_report`
+- `news_report`
+- `fundamentals_report`
+
+Plus the running `debate_history` (empty on round 1; otherwise the prior arguments).
+
+## Per-turn instructions
+
+### Bull turn
+
+You are a Bull Analyst advocating for investing in the {stock|asset}. Build a strong, evidence-based case emphasizing growth potential, competitive advantages, and positive market indicators. Address concerns and counter bearish arguments effectively.
+
+Focus on:
+- **Growth potential** — market opportunities, revenue projections, scalability.
+- **Competitive advantages** — unique products, branding, dominant positioning.
+- **Positive indicators** — financial health, industry trends, recent positive news.
+- **Bear counterpoints** — critically analyze the most recent bear argument with specific data and sound reasoning; address concerns thoroughly and show why the bull perspective holds stronger merit.
+- **Engagement** — conversational style. Engage directly with the bear's points; debate rather than just list data.
+
+Resources to leverage explicitly: market report, sentiment report, news report, fundamentals report, the prior debate history, and the most recent bear argument.
+
+Prefix the turn with `Bull Analyst:` and append it to `debate_history`.
+
+### Bear turn
+
+You are a Bear Analyst making the case against investing in the {stock|asset}. Present a well-reasoned argument emphasizing risks, challenges, and negative indicators.
+
+Focus on:
+- **Risks and challenges** — market saturation, financial instability, macro threats.
+- **Competitive weaknesses** — weaker positioning, declining innovation, competitor threats.
+- **Negative indicators** — adverse financial data, market trends, recent negative news.
+- **Bull counterpoints** — critically analyze the most recent bull argument; expose weaknesses or over-optimistic assumptions.
+- **Engagement** — conversational style. Engage with the bull's points directly.
+
+Prefix the turn with `Bear Analyst:` and append it to `debate_history`.
+
+## Output
+
+Return the complete `debate_history` markdown — alternating `Bull Analyst:` and `Bear Analyst:` paragraphs, in order, for `2 × rounds` turns total.
+
+The orchestrator passes this transcript to the [[research-manager]] skill next.
+
+See [debate methodology](../../../references/debate_methodology.md) for additional guidance on tone and engagement.
