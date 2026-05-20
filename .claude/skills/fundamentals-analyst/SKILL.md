@@ -39,6 +39,10 @@ A markdown report covering:
 
 End with a markdown table summarizing key fundamentals: Metric | Latest Value | Trend | Implication.
 
+## Persist output
+
+After producing the report, write it to `reports/<TICKER>_<TRADE-DATE>/fundamentals-analyst.md` using the Write tool. `<TICKER>` is uppercased; `<TRADE-DATE>` is `YYYY-MM-DD`. Parent directories are created automatically. Consumed by [[trading-analysis]] when assembling `full_report.md`.
+
 ## Notes
 
 - For crypto assets the fetchers may return `<unavailable>` placeholders. Surface the limitation in the report rather than fabricating financial figures.

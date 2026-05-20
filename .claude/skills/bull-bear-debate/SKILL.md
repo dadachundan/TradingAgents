@@ -68,3 +68,7 @@ Return the complete `debate_history` markdown — alternating `Bull Analyst:` an
 The orchestrator passes this transcript to the [[research-manager]] skill next.
 
 See [debate methodology](../../../references/debate_methodology.md) for additional guidance on tone and engagement.
+
+## Persist output
+
+After producing the transcript, write it to `reports/<TICKER>_<TRADE-DATE>/bull-bear-debate.md` using the Write tool. `<TICKER>` is uppercased; `<TRADE-DATE>` is `YYYY-MM-DD`. Parent directories are created automatically. Consumed by [[trading-analysis]] when assembling `full_report.md`.

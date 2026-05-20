@@ -64,20 +64,37 @@ Output: `final_trade_decision` (markdown PortfolioDecision).
 
 ### Step 7 — Final report assembly
 
-Assemble the final report as a single markdown document with these top-level sections, in order:
+By this point each sub-skill has written its own section to disk under `reports/<TICKER>_<TRADE-DATE>/`:
 
-1. Header: `# Trading Analysis: <ticker> @ <trade_date>` plus a one-sentence executive line pulled from the PortfolioDecision's Executive Summary.
-2. `## Market Analyst Report` — full `market_report`.
-3. `## Sentiment Analyst Report` — full `sentiment_report`.
-4. `## News Analyst Report` — full `news_report`.
-5. `## Fundamentals Analyst Report` — full `fundamentals_report`.
-6. `## Bull / Bear Debate` — full `debate_history`.
-7. `## Research Plan` — full `investment_plan`.
-8. `## Trader Proposal` — full `trader_investment_plan`.
-9. `## Risk Debate` — full `risk_debate_history`.
-10. `## Portfolio Decision` — full `final_trade_decision`.
+```
+reports/<TICKER>_<TRADE-DATE>/
+├── market-analyst.md
+├── sentiment-analyst.md
+├── news-analyst.md
+├── fundamentals-analyst.md
+├── bull-bear-debate.md
+├── research-manager.md
+├── trader-plan.md
+├── risk-debate.md
+└── portfolio-decision.md
+```
 
-Print this complete report to the user. The PortfolioDecision step has already persisted the final decision to `memory/trading_memory.md`.
+Assemble `full_report.md` as a single markdown document with these top-level sections, in order:
+
+1. Header: `# Trading Analysis: <TICKER> @ <TRADE-DATE>` plus a one-sentence executive line pulled from the PortfolioDecision's Executive Summary.
+2. `## Market Analyst Report` — contents of `market-analyst.md` (or full `market_report` from context).
+3. `## Sentiment Analyst Report` — contents of `sentiment-analyst.md`.
+4. `## News Analyst Report` — contents of `news-analyst.md`.
+5. `## Fundamentals Analyst Report` — contents of `fundamentals-analyst.md`.
+6. `## Bull / Bear Debate` — contents of `bull-bear-debate.md`.
+7. `## Research Plan` — contents of `research-manager.md`.
+8. `## Trader Proposal` — contents of `trader-plan.md`.
+9. `## Risk Debate` — contents of `risk-debate.md`.
+10. `## Portfolio Decision` — contents of `portfolio-decision.md`.
+
+Write the assembled markdown to `reports/<TICKER>_<TRADE-DATE>/full_report.md` using the Write tool, then print the full report to the user.
+
+The PortfolioDecision step has already persisted the final decision to `memory/trading_memory.md` as well.
 
 ## Notes
 

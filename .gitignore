@@ -222,3 +222,6 @@ __marimo__/
 .claude/*
 !.claude/skills/
 
+# TradingAgents run output — per-run report directories
+reports/
+

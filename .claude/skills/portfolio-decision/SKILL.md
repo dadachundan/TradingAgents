@@ -60,12 +60,19 @@ If `past_context` is non-empty, incorporate its lessons; otherwise rely solely o
 **Time Horizon**: <optional — e.g. "3-6 months", or omit the line>
 ```
 
+## Persist output
+
+After producing the markdown, write it to `reports/<TICKER>_<TRADE-DATE>/portfolio-decision.md` using the Write tool. `<TICKER>` is uppercased; `<TRADE-DATE>` is `YYYY-MM-DD`. Parent directories are created automatically. Consumed by [[trading-analysis]] when assembling `full_report.md`.
+
 ## Memory write
 
-After producing the markdown above, append it to the decision log:
+After the file is written, append it to the decision log:
 
 ```bash
-python scripts/memory_log.py append --ticker <ticker> --trade-date <YYYY-MM-DD> --decision-file <path-to-decision.md>
+python scripts/memory_log.py append \
+    --ticker <TICKER> \
+    --trade-date <YYYY-MM-DD> \
+    --decision-file reports/<TICKER>_<TRADE-DATE>/portfolio-decision.md
 ```
 
 This creates a `pending` entry that a later reflection job can update with realized returns. See [memory format](../../../references/memory_format.md) for schema details.

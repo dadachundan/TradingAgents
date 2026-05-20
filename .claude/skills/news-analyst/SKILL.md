@@ -42,3 +42,7 @@ A markdown report providing **specific, actionable insights with supporting evid
 - Catalysts on the calendar (earnings, FOMC, product launches mentioned in news)
 
 End the report with a markdown table organizing key points: Theme | Direction | Source | Supporting Evidence.
+
+## Persist output
+
+After producing the report, write it to `reports/<TICKER>_<TRADE-DATE>/news-analyst.md` using the Write tool. `<TICKER>` is uppercased; `<TRADE-DATE>` is `YYYY-MM-DD`. Parent directories are created automatically. Consumed by [[trading-analysis]] when assembling `full_report.md`.

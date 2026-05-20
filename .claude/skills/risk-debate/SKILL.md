@@ -54,3 +54,7 @@ Argue conversationally. Prefix `Neutral Analyst:`.
 Return the complete `risk_debate_history` markdown — `Aggressive Analyst:` / `Conservative Analyst:` / `Neutral Analyst:` paragraphs, in order, for `3 × rounds` turns total.
 
 The orchestrator passes this transcript to [[portfolio-decision]] next.
+
+## Persist output
+
+After producing the transcript, write it to `reports/<TICKER>_<TRADE-DATE>/risk-debate.md` using the Write tool. `<TICKER>` is uppercased; `<TRADE-DATE>` is `YYYY-MM-DD`. Parent directories are created automatically. Consumed by [[trading-analysis]] when assembling `full_report.md`.

@@ -55,6 +55,10 @@ A markdown report ending in a markdown table that summarizes the key signals. Su
 
 Briefly explain *why* each chosen indicator is suitable for the current market context — your indicator selection itself is a signal.
 
+## Persist output
+
+After producing the markdown report, write it to `reports/<TICKER>_<TRADE-DATE>/market-analyst.md` using the Write tool. `<TICKER>` is uppercased; `<TRADE-DATE>` is `YYYY-MM-DD`. Parent directories are created automatically. This file is later consumed by [[trading-analysis]] when assembling `full_report.md`.
+
 ## Notes
 
 - Crypto markets trade 24/7 — when `--asset-type crypto`, treat the date window as calendar days, not trading days.

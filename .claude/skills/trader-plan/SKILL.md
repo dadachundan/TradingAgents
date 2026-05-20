@@ -53,3 +53,7 @@ FINAL TRANSACTION PROPOSAL: **<BUY | HOLD | SELL>**
 The trailing `FINAL TRANSACTION PROPOSAL:` line is required for backward compatibility with downstream consumers that grep for it.
 
 Pass the markdown forward as `trader_investment_plan` to [[risk-debate]].
+
+## Persist output
+
+After producing the markdown, write it to `reports/<TICKER>_<TRADE-DATE>/trader-plan.md` using the Write tool. `<TICKER>` is uppercased; `<TRADE-DATE>` is `YYYY-MM-DD`. Parent directories are created automatically. Consumed by [[trading-analysis]] when assembling `full_report.md`.

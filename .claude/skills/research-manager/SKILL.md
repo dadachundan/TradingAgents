@@ -48,3 +48,7 @@ Commit to a clear stance whenever the debate's strongest arguments warrant one; 
 ```
 
 This block becomes `investment_plan` for the downstream [[trader-plan]] and [[portfolio-decision]] skills.
+
+## Persist output
+
+After producing the markdown, write it to `reports/<TICKER>_<TRADE-DATE>/research-manager.md` using the Write tool. `<TICKER>` is uppercased; `<TRADE-DATE>` is `YYYY-MM-DD`. Parent directories are created automatically. Consumed by [[trading-analysis]] when assembling `full_report.md`.
