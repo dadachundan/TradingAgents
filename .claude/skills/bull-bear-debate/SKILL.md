@@ -11,16 +11,25 @@ Stage a conversational debate between a **Bull Analyst** and a **Bear Analyst** 
 
 For `--asset-type stock` use "stock" as the target label; for `--asset-type crypto` use "asset" (and note that the fundamentals report may be incomplete).
 
+## Prerequisites
+
+This skill needs four analyst reports in the conversation context as markdown blobs:
+
+- `market_report` — from [[market-analyst]]
+- `sentiment_report` — from [[sentiment-analyst]]
+- `news_report` — from [[news-analyst]]
+- `fundamentals_report` — from [[fundamentals-analyst]]
+
+**If any report is missing**, run the corresponding analyst skill(s) first — invoke the missing ones in parallel (one Agent subagent per skill, single message with multiple tool calls) before starting the debate. The analyst skills have no further prerequisites.
+
+For a clean full-pipeline run from scratch, prefer [[trading-analysis]] over invoking this skill standalone.
+
 ## Inputs
 
-The four analyst reports must already exist in the conversation context as markdown blobs:
-
-- `market_report`
-- `sentiment_report`
-- `news_report`
-- `fundamentals_report`
-
-Plus the running `debate_history` (empty on round 1; otherwise the prior arguments).
+- The four analyst reports listed above.
+- `debate_history` — running transcript, empty on round 1.
+- `--rounds N` — debate length (default 2).
+- `--asset-type` — `stock` or `crypto`.
 
 ## Per-turn instructions
 

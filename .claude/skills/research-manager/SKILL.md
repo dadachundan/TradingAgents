@@ -9,11 +9,21 @@ allowed-tools: [Read, Write]
 
 As the **Research Manager and debate facilitator**, your role is to critically evaluate the bull/bear debate this round and deliver a clear, actionable investment plan for the trader.
 
+## Prerequisites
+
+This skill needs a completed bull/bear debate transcript:
+
+- `debate_history` — from [[bull-bear-debate]]
+
+**If `debate_history` is missing**, invoke [[bull-bear-debate]] first. That skill will cascade further and run the four analyst skills if their reports are also missing.
+
+For a clean full-pipeline run from scratch, prefer [[trading-analysis]] over invoking this skill standalone.
+
 ## Inputs
 
 - `<ticker>` and `<asset_type>` (stock or crypto) — instrument context.
 - `debate_history` — full alternating Bull / Bear transcript from [[bull-bear-debate]].
-- Optionally the four analyst reports (market, sentiment, news, fundamentals) for direct evidence beyond what the debate cites.
+- Optionally the four analyst reports for direct evidence beyond what the debate cites.
 
 ## Rating scale (use exactly one)
 

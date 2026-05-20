@@ -9,14 +9,25 @@ allowed-tools: [Read, Write]
 
 Stage a three-way debate among an **Aggressive**, **Conservative**, and **Neutral** Risk Analyst over the Trader's transaction proposal. The debate runs for `--rounds N` rounds (default 1). Each round = one Aggressive turn, one Conservative turn, one Neutral turn (in that order).
 
-## Inputs
+## Prerequisites
 
-All present in conversation context:
+This skill needs the trader's proposal plus the four analyst reports:
+
+- `trader_investment_plan` — from [[trader-plan]]
+- `market_report` / `sentiment_report` / `news_report` / `fundamentals_report` — from the four analyst skills
+
+**If `trader_investment_plan` is missing**, invoke [[trader-plan]] first; that will cascade up through [[research-manager]] and [[bull-bear-debate]] as needed (and the analyst reports along the way).
+
+**If only the analyst reports are missing** (e.g. you have a trader plan from a separate workflow), invoke the missing analyst skills in parallel.
+
+For a clean full-pipeline run from scratch, prefer [[trading-analysis]] over invoking this skill standalone.
+
+## Inputs
 
 - `trader_investment_plan` — the [[trader-plan]] proposal.
 - Four analyst reports: `market_report`, `sentiment_report`, `news_report`, `fundamentals_report`.
-- Running `risk_debate_history` (empty on round 1).
-- Per analyst, the previous turn's response from the other two.
+- `risk_debate_history` — running transcript, empty on round 1.
+- `--rounds N` — debate length (default 1).
 
 ## Per-turn instructions
 

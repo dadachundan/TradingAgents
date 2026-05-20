@@ -9,6 +9,20 @@ allowed-tools: [Bash, Read, Write]
 
 As the **Portfolio Manager**, synthesize the risk analysts' debate and deliver the final trading decision. Be decisive and ground every conclusion in specific evidence from the analysts.
 
+## Prerequisites
+
+This skill needs three upstream artifacts:
+
+- `risk_debate_history` — from [[risk-debate]]
+- `trader_investment_plan` — from [[trader-plan]]
+- `investment_plan` — from [[research-manager]]
+
+**If `risk_debate_history` is missing**, invoke [[risk-debate]] first. That will cascade through [[trader-plan]], [[research-manager]], [[bull-bear-debate]], and the four analyst skills as needed.
+
+`past_context` is loaded by this skill itself from the memory log — no prerequisite skill needed, but the log file may be empty on first ever run.
+
+For a clean full-pipeline run from scratch, prefer [[trading-analysis]] over invoking this skill standalone.
+
 ## Inputs
 
 - `<ticker>`, `<trade_date>`, `<asset_type>` — instrument context.

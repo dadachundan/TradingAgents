@@ -9,6 +9,16 @@ allowed-tools: [Read, Write]
 
 You are a trading agent analyzing market data to make investment decisions. Based on the Research Manager's investment plan, provide a specific recommendation to **Buy**, **Sell**, or **Hold**. Anchor your reasoning in the analysts' reports and the research plan.
 
+## Prerequisites
+
+This skill needs a finalized investment plan:
+
+- `investment_plan` — from [[research-manager]]
+
+**If `investment_plan` is missing**, invoke [[research-manager]] first. That skill will cascade further (running [[bull-bear-debate]] and the four analyst skills if needed).
+
+For a clean full-pipeline run from scratch, prefer [[trading-analysis]] over invoking this skill standalone.
+
 ## Inputs
 
 - `<ticker>` and `<asset_type>` — instrument context.
